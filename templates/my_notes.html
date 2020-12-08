@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}My Blogs{% endblock title %}
+
+{% block content %}
+  <h1 align=center>Travellogue</h1>
+  <h2 align=center>A Micro-blogging site for Travellers</h2>
+  <hr>
+
+  <h2 align=center>{{user.username}}'s blog</h2>
+
+  {% for note in object_list %}
+    <div class="card">
+      <div class="card-header">
+        <a href="{% url 'note_detail' note.pk %}"><i class="fa fa-file"></i> </a><span class="font-weight-bold">{{ note.title }}</span>  &middot;
+        <br>
+        <span class="text-muted"><span class="fa fa-user"></span> {{ note.author }} &nbsp;|&nbsp;
+         <i class="fa fa-calendar"></i> {{ note.created }}</span>
+      </div>
+      <div class="card-body">
+        <a href="{% url 'note_edit' note.pk %}"><i class="fa fa-pencil"></i> </a>  &nbsp;|&nbsp;
+         <a href="{% url 'note_delete' note.pk %}"><i class="fa fa-trash"></i></a>
+      </div>
+    </div>
+    <br />
+
+    
+  {% endfor %}
+
+  {% if is_paginated %}
+    <nav aria-label="Page navigation conatiner"></nav>
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+      {% endif %}
+      {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+      {% endif %}
+    </ul>
+    </nav>
+  {% endif %}
+  
+{% endblock content %}
+

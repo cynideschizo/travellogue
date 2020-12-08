@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="jumbotron">
+  <h1 class="display-4" align="center">Travellogue</h1>
+  <p class="lead" align="center">A Micro-blogging site for Travellers</p>
+  <p class="lead" align="center">
+    <a class="btn btn-primary btn-lg" href="{% url 'note_list' %}"
+    role="button" >List all Blogs</a>
+  </p>
+</div>
+{% endblock content %}
+
